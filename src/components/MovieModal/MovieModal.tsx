@@ -9,21 +9,21 @@ interface MovieModalProps {
 }
 
 export default function MovieModal({ movie, onClose }: MovieModalProps) {
-  const handleackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
     }
   };
   useEffect(() => {
-    const handleKeyDowm = (event: KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === `Escape`) {
         onClose();
       }
     };
-    document.addEventListener('keydown', handleKeyDowm);
+    document.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
     return () => {
-      document.removeEventListener('keydown', handleKeyDowm);
+      document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
   }, [onClose]);
@@ -33,7 +33,7 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
       className={css.backdrop}
       role="dialog"
       aria-modal="true"
-      onClick={handleackdropClick}
+      onClick={handleBackdropClick}
     >
       <div className={css.modal}>
         <button
